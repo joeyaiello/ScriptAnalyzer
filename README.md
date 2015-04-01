@@ -1,12 +1,15 @@
+PowerShell Script Analyzer
+==========================
+
 Introduction
-============
+------------
 
 ScriptAnalyzer is a static code checker for Windows PowerShell modules and scripts. ScriptAnalyzer checks the quality of Windows PowerShell code by running a set of rules. The rules are based on PowerShell best practices identified by PowerShell Team and the community. It generates DiagnosticResults (errors and warnings) to inform users about potential code defects and suggests possible solutions for improvements.
 
 ScriptAnalyzer is shipped with a collection of built-in rules that checks various aspects of PowerShell code such as presence of uninitialized variables, usage of PSCredential Type, usage of Invoke-Expression etc. Additional functionalities such as exclude/include specific rules are also supported.
 
 ScriptAnalyzer cmdlets
-======================
+----------------------
 ```
 Get-ScriptAnalyzerRule [-CustomizedRulePath <string[]>] [-Name <string[]>] [<CommonParameters>]
 
@@ -14,40 +17,33 @@ Invoke-ScriptAnalyzer [-Path] <string> [-CustomizedRulePath <string[]>] [-Exclud
 ```
 
 Requirements
-============
+------------
 
 WS2012R2 / Windows 8.1 / Windows OS running PowerShell v5.0 which can be obtained using [Windows Management Framework 5.0 Preview February 2015](http://go.microsoft.com/fwlink/?LinkId=398175).
 
 Installation
-============
+------------
 
 1. Build the Code using Visual Studio
-
 2. Copy following files to ```$env:ProgramFiles\WindowsPowerShell\Modules\ScriptAnalyzer```
-
 3. In PowerShell Console:
-```powershell
-Import-Module $env:ProgramFiles\WindowsPowerShell\Modules\ScriptAnalyzer\PSScriptAnalyzer.psd1
-```
-
-To confirm installation: run ```Get-ScriptAnalyzerRule``` in the PowerShell console to obtain the built-in rules
+```Import-Module $env:ProgramFiles\WindowsPowerShell\Modules\ScriptAnalyzer\PSScriptAnalyzer.psd1```
+4. To confirm installation: run ```Get-ScriptAnalyzerRule``` in the PowerShell console to obtain the built-in rules
 
 Building the Code
-=================
+-----------------
 
 Use Visual Studio to build "ScriptAnalyzer.sln". Use ~/ScriptAnalyzer/ folder to load PSScriptAnalyzer.psd1
 
 Running Tests
-=============
+-------------
 
 Pester-based ScriptAnalyzer Tests are located in ```<branch>/ScriptAnalyzer/Tests``` folder
 
 * Ensure Pester is installed on the machine
 * Go the Tests folder in your local repository
-* Run Engine Tests:
-.\InvokeScriptAnalyzer.tests.ps1
-* Run Tests for Built-in rules:
-.\*.ps1 (Example - .\ AvoidConvertToSecureStringWithPlainText.ps1)
+* Run Engine Tests: ```.\InvokeScriptAnalyzer.tests.ps1```
+* Run Tests for Built-in rules: ```.\*.ps1 (Example - .\ AvoidConvertToSecureStringWithPlainText.ps1)```
  
 
 Contributing to ScriptAnalyzer
